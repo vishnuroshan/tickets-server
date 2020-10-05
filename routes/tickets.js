@@ -2,9 +2,21 @@ const router = require('express').Router();
 const { celebrate, Joi, errors } = require('celebrate');
 const ticketController = require('../controllers/tickets');
 
-router.get('/list', (request, response) => {
-	ticketController.list(request.user.userId).then((posts) => {
-		response.status(200).json({ status: 200, posts });
+// router.get('/list', (request, response) => {
+// 	ticketController.list().then((posts) => {
+// 		response.status(200).json({ status: 200, posts });
+// 	}, err => {
+// 		response.status(err.status).json(err);
+// 	});
+// });
+
+router.get('/list', celebrate({
+	query: Joi.object().keys({
+		userId: Joi.string().optional()
+	})
+}), errors(), (request, response) => {
+	ticketController.list(request.query.userId).then((tickets) => {
+		response.status(200).json({ status: 200, tickets });
 	}, err => {
 		response.status(err.status).json(err);
 	});

@@ -1,11 +1,13 @@
-const { transaction } = require('../../db/connection');
 const Tickets = require('./ticketModel');
 
-exports.getTicketsByAssignee = (assignee, transaction = null) => Tickets.findAll({ where: { assignee }, transaction });
+// exports.getTicketsByAssignee = (assignee, transaction = null) => Tickets.findAll({ where: { assignee }, transaction });
 
 // exports.getTicketsByCreatedBy = (createdBy, transaction = null) => Tickets.findAll({ where: { createdBy }, transaction });
 
-exports.getAllTickets = (transaction = null) => Tickets.findAll({ transaction });
+exports.getAllTickets = (assignee = null, transaction = null) => {
+	return assignee ? Tickets.findAll({ where: { assignee }, transaction })
+		: Tickets.findAll({ transaction });
+};
 
 exports.create = (newTicket, transaction = null) => Tickets.create(newTicket, { transaction });
 

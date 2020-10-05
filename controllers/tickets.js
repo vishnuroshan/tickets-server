@@ -2,8 +2,8 @@ const ticketController = {};
 const tickets = require('../models/tickets');
 const shortid = require('shortid');
 
-ticketController.list = () => new Promise((resolve, reject) => {
-	tickets.getAllTickets().then(tickets => {
+ticketController.list = (userId = null) => new Promise((resolve, reject) => {
+	tickets.getAllTickets(userId).then(tickets => {
 		return resolve(tickets);
 	}, err => {
 		console.log(err);
