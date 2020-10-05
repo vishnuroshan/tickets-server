@@ -31,6 +31,16 @@ ticketController.createTicket = (newTicket) => new Promise((resolve, reject) => 
 	});
 });
 
+ticketController.edit = (ticketToEdit) => new Promise((resolve, reject) => {
+	tickets.edit(ticketToEdit).then((edited) => {
+		return resolve(edited);
+	}, err => {
+		console.log(err);
+		return reject({ status: 500, error: err });
+	});
+});
+
+
 ticketController.delete = (ticketId) => new Promise((resolve, reject) => {
 	tickets.delete(ticketId).then((deleted) => {
 		if (deleted)
