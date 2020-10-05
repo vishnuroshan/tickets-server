@@ -9,6 +9,7 @@ const Ticket = sequelize.define('Ticket', {
 	},
 	title: {
 		type: Sequelize.STRING,
+		unique: true,
 		allowNull: false
 	},
 	assignee: { type: Sequelize.STRING },
