@@ -5,7 +5,7 @@ const Tickets = require('./ticketModel');
 // exports.getTicketsByCreatedBy = (createdBy, transaction = null) => Tickets.findAll({ where: { createdBy }, transaction });
 
 exports.getAllTickets = (assignee = null, transaction = null) => {
-	return assignee ? Tickets.findAll({ where: { assignee }, transaction })
+	return assignee ? Tickets.findAll({ where: { assignee, isActive: true }, transaction })
 		: Tickets.findAll({ transaction });
 };
 

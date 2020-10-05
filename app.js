@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes');
 const middleWare = require('./utils/middlewares');
+const cors = require('cors');
+app.use(cors());
 app.disable('x-powered-by');
 
 app.use(bodyParser.json());

@@ -5,3 +5,6 @@ exports.createuser = (userDetails, transaction = null) =>
 
 exports.findUser = (email, transaction = null) =>
 	User.findOne({ where: { email }, transaction });
+
+exports.findUserById = (userId, transaction = null) =>
+	User.findOne({ where: { userId }, transaction });
