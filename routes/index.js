@@ -1,4 +1,5 @@
 const auth = require('./auth');
-const post = require('./post');
+const tickets = require('./tickets');
+const admin = require('./admin');
 
-module.exports = { auth, post };
+module.exports = { auth, tickets, admin };

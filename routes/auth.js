@@ -4,8 +4,9 @@ const { celebrate, errors, Joi } = require('celebrate');
 
 router.post('/sign-up', celebrate({
 	body: Joi.object().keys({
-		firstName: Joi.string().required(),
-		lastName: Joi.string().required(),
+		name: Joi.string().required(),
+		isAdmin: Joi.boolean().default(false),
+		designation: Joi.string().required(),
 		email: Joi.string().email().required(),
 		password: Joi.string().required()
 		// .pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/, { name: 'passwordRule' })

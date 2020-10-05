@@ -5,14 +5,10 @@ exports.checkToken = (request, response, next) => {
 	let token = request.headers.authorization;
 	if (token) {
 		if (token.startsWith('Bearer ')) token = token.slice(7, token.length);
-		jwt.validateJWT(token).then((result) => {
-			User.findUser(result.email).then((user) => {
-				request.user = user;
-				next();
-			});
-		}, (err) => {
-			console.log(err);
-			return response.status(401).json({ status: 401, ...err });
+		let paload = jwt.validateJWT(token);
+		User.findUser(paload.email).then((user) => {
+			request.user = user;
+			next();
 		});
 	} else {
 		// token not sent

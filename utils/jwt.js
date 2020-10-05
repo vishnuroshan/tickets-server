@@ -7,23 +7,25 @@ const jwtHead = {
 	expiresIn: '7d'
 };
 
-jsonwebtoken.generateJWT = (payload) => new Promise((resolve, reject) => {
+jsonwebtoken.generateJWT = (payload) => {
 	try {
 		let token = jwt.sign(payload, config.KEY, jwtHead);
-		return resolve(token);
+		return token;
 	} catch (err) {
-		return reject(err);
+		console.log(err);
+		return false;
 	}
-});
+};
 
 
-jsonwebtoken.validateJWT = (token) => new Promise((resolve, reject) => {
+jsonwebtoken.validateJWT = (token) => {
 	try {
 		const payload = jwt.verify(token, config.KEY);
-		return resolve(payload);
+		return payload;
 	} catch (err) {
-		return reject(err);
+		console.log(err);
+		return false;
 	}
-});
+};
 
 module.exports = jsonwebtoken;

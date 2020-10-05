@@ -18,6 +18,8 @@ app.use('/auth/', routes.auth);
 
 // private routes
 app.use(middleWare.checkToken);
-app.use('/posts/', routes.post);
+app.use('/tickets/', routes.tickets);
+
+app.use('/admin/', routes.admin);
 
 module.exports = app;
